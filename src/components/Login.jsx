@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { loginUser } from "../api/auth";
 
 const Login = () => {
+  const [email, setEmail] = useState("Elon@gmail.com");
+  const [password, setPassword] = useState("Harshil1@");
+
+  const handleLogin = async () => {
+    try {
+      const data = await loginUser(email, password);
+      console.log("LOGIN SUCCSS", data);
+    } catch (err) {
+      console.log("ERROR:" + err.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-base-200 pb-35">
       <div className="card bg-neutral w-96 shadow-xl p-2">
@@ -22,7 +35,13 @@ const Login = () => {
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </g>
               </svg>
-              <input type="email" placeholder="mail@site.com" required />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="mail@site.com"
+                required
+              />
             </label>
 
             <label className="input validator">
@@ -46,9 +65,11 @@ const Login = () => {
               </svg>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Password"
-                minlength="8"
+                minLength="8"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
               />
@@ -56,7 +77,9 @@ const Login = () => {
           </div>
 
           <div className="card-actions justify-start py-5">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary" onClick={handleLogin}>
+              Login
+            </button>
           </div>
         </div>
       </div>
