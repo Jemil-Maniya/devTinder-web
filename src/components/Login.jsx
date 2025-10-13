@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { loginUser } from "../api/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("Elon@gmail.com");
   const [password, setPassword] = useState("Harshil1@");
+  const dispatch = useDispatch()
 
   const handleLogin = async () => {
     try {
       const data = await loginUser(email, password);
-      console.log("LOGIN SUCCSS", data);
+      console.log("LOGIN SUCCSS", data.data);
+      dispatch(addUser(data.data))
     } catch (err) {
       console.log("ERROR:" + err.message);
     }
