@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { userLogin } from "../api/auth";
+import { userProfile } from "../api/auth";
 
 const Body = () => {
   const user = (state) => state.user.user;
@@ -18,7 +18,7 @@ const Body = () => {
         return navigate("/login");
       }
 
-      const data = await userLogin();
+      const data = await userProfile();
       dispatch(addUser(data));
       console.log(data);
     } catch (err) {
@@ -31,7 +31,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [user, dispatch, navigate]);
 
   return (
     <>
