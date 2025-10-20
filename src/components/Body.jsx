@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { userProfile } from "../api/auth";
 
 const Body = () => {
-  const user = (state) => state.user.user;
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [user, dispatch, navigate]);
+  }, [ dispatch, navigate]);
 
   return (
     <>
