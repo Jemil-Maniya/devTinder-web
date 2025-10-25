@@ -30,14 +30,16 @@ const NavBar = () => {
       </div>
       {user && (
         <div className="flex items-center gap-2 mx-5">
-          <p className=" text-white mr-3 text-sm">Welcome, {user?.firstName}</p>
+          <p className=" text-white mr-3 text-sm">
+            Welcome, {user?.firstName} {user?.lastName}
+          </p>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full ">
-                <img alt="User IMG" src={user?.user?.data?.photoUrl} />
+                <img alt="User IMG" src={user?.photoUrl} />
               </div>
             </div>
             <ul
