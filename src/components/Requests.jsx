@@ -104,12 +104,12 @@ const Requests = () => {
                   <button
                     className="btn btn-sm btn-secondary"
                     onClick={() => handleReview("accepted", request._id)}>
-                    Interested
+                    Accept
                   </button>
                   <button
                     className="btn btn-sm btn-primary"
                     onClick={() => handleReview("rejected", request._id)}>
-                    Ignored
+                    Reject
                   </button>
                 </div>
               </li>

@@ -8,7 +8,7 @@ const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
 
-
+  
   const getFeed = async () => {
     try {
       const data = await userFeed();
@@ -21,6 +21,19 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
+
+  if (!feed?.feed?.data || feed.feed.data.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-base-content text-base-100">
+        <div className="card bg-neutral shadow-xl p-10 text-center">
+          <h2 className="text-3xl font-semibold mb-3">No more users!</h2>
+          <p className="text-gray-400 text-lg">
+            You've reached the end of your feed.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center items-center h-screen bg-base-content  ">
