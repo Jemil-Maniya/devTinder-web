@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loginUser } from "../api/auth";
+import { loginUser, signupUser } from "../api/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,17 @@ const Login = () => {
       navigate("/feed");
     } catch (err) {
       console.log("ERROR:" + err.message);
+    }
+  };
+
+  const handleSignup = async () => {
+    try {
+      const res = await signupUser(firstName, lastName, email, password);
+      console.log("SIGNUP", res.data.data);
+      navigate("/feed")
+      return res.data.data;
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
@@ -164,10 +175,33 @@ const Login = () => {
           </div>
 
           <div className="card-actions justify-start py-5">
-            <button className="btn btn-primary" onClick={handleLogin}>
+            <button
+              className="btn btn-primary"
+              onClick={isToggle ? handleLogin : handleSignup}>
               {isToggle ? "Login" : "Sign Up"}
             </button>
           </div>
+          <p className="text-sm text-white text-center">
+            {isToggle ? (
+              <>
+                Don’t have an account?{" "}
+                <span
+                  onClick={() => setIsToggle(false)}
+                  className="text-primary cursor-pointer hover:underline">
+                  Sign up
+                </span>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <span
+                  onClick={() => setIsToggle(true)}
+                  className="text-primary cursor-pointer hover:underline">
+                  Login
+                </span>
+              </>
+            )}
+          </p>
         </div>
       </div>
     </div>
