@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("Harshil1@");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isToggle, setIsToggle] = useState(false);
+  const [isToggle, setIsToggle] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
