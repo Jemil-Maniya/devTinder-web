@@ -1,16 +1,16 @@
 import axios from "axios";
 
+const isDev = window.location.hostname === "localhost";
+
 // Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: "/api", // ✅ replace with your backend URL
+  baseURL: isDev ? "http://localhost:7777" : "/api", // ✅ replace with your backend URL
   withCredentials: true,
   timeout: 10000, // optional: 10 sec timeout
   headers: {
     "Content-Type": "application/json",
   },
 });
-
-
 
 // 🧠 Request interceptor (runs before every request)
 axiosInstance.interceptors.request.use(
