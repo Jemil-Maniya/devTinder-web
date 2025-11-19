@@ -7,6 +7,7 @@ import store from "./utils/appStore";
 import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="feed" element={<Feed />} />
               <Route path="user/connections" element={<Connections />} />
               <Route path="user/request/receivede" element={<Requests />} />
+              <Route path="chat/:toUserId" element={<Chat/>} />
             </Route>
           </Routes>
         </BrowserRouter>
