@@ -1,15 +1,14 @@
-// src/api/messagesApi.js
 import axiosInstance from "./axiosInstance";
 
 /**
  * Fetch conversation between two users
- * GET /api/messages/:userA/:userB?limit=200
+ * GET /messages/:userA/:userB?limit=200
  * returns { ok: true, messages: [...] }
  */
 export const fetchConversation = async (userA, userB, limit = 200) => {
   try {
     const res = await axiosInstance.get(
-      `/api/messages/${userA}/${userB}?limit=${limit}`
+      `/messages/${userA}/${userB}?limit=${limit}`
     );
     return res.data; // { ok: true, messages: [...] }
   } catch (err) {
@@ -23,11 +22,11 @@ export const fetchConversation = async (userA, userB, limit = 200) => {
 
 /**
  * Update message status (delivered/read)
- * PATCH /api/messages/status/:messageId  { status }
+ * PATCH /messages/status/:messageId  { status }
  */
 export const updateMessageStatus = async (messageId, status) => {
   try {
-    const res = await axiosInstance.patch(`/api/messages/status/${messageId}`, {
+    const res = await axiosInstance.patch(`/messages/status/${messageId}`, {
       status,
     });
     return res.data;
@@ -41,9 +40,8 @@ export const updateMessageStatus = async (messageId, status) => {
 };
 
 /**
- * Optional: send message via REST (if you want a fallback)
- * POST /api/messages/send -> implement on server if needed
- * (You can keep using sockets for real-time sending.)
+ * Optional: send message via REST (fallback)
+ * POST /messages/send
  */
 export const sendMessageRest = async (payload) => {
   try {
