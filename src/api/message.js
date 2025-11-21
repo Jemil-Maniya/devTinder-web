@@ -9,7 +9,7 @@ import axiosInstance from "./axiosInstance";
 export const fetchConversation = async (userA, userB, limit = 200) => {
   try {
     const res = await axiosInstance.get(
-      `/messages/${userA}/${userB}?limit=${limit}`
+      `/api/messages/${userA}/${userB}?limit=${limit}`
     );
     return res.data; // { ok: true, messages: [...] }
   } catch (err) {
@@ -27,7 +27,7 @@ export const fetchConversation = async (userA, userB, limit = 200) => {
  */
 export const updateMessageStatus = async (messageId, status) => {
   try {
-    const res = await axiosInstance.patch(`/messages/status/${messageId}`, {
+    const res = await axiosInstance.patch(`/api/messages/status/${messageId}`, {
       status,
     });
     return res.data;
@@ -48,7 +48,7 @@ export const updateMessageStatus = async (messageId, status) => {
 export const sendMessageRest = async (payload) => {
   try {
     // payload: { from, to, text, meta }
-    const res = await axiosInstance.post("/messages/send", payload);
+    const res = await axiosInstance.post("/api/messages/send", payload);
     return res.data;
   } catch (err) {
     console.error("sendMessageRest error:", err?.response?.data || err.message);
