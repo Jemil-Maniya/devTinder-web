@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 const isDev = window.location.hostname === "localhost";
 const DEV_URL = "http://localhost:7777"; // dev backend origin
-const PROD_BASE = "/api"; // production base for socket path
+const PROD_BASE = "http://51.21.248.17"; // production base for socket path
 
 let socket = null;
 
