@@ -48,7 +48,7 @@ export const updateMessageStatus = async (messageId, status) => {
 export const sendMessageRest = async (payload) => {
   try {
     // payload: { from, to, text, meta }
-    const res = await axiosInstance.post("/api/messages/send", payload);
+    const res = await axiosInstance.post("/messages/send", payload);
     return res.data;
   } catch (err) {
     console.error("sendMessageRest error:", err?.response?.data || err.message);
