@@ -5,8 +5,8 @@ import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("Elon@gmail.com");
-  const [password, setPassword] = useState("Harshil1@");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isToggle, setIsToggle] = useState(true);
@@ -28,7 +28,7 @@ const Login = () => {
     try {
       const res = await signupUser(firstName, lastName, email, password);
       console.log("SIGNUP", res.data.data);
-      navigate("/feed")
+      navigate("/feed");
       return res.data.data;
     } catch (err) {
       console.log(err.message);
